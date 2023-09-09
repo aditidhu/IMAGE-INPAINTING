@@ -1,0 +1,470 @@
+## __OpenCV__:
+
+1. **Introduction to Computer Vision:**
+   - Computer vision involves analyzing images and producing specific results.
+   - Images in computer vision are represented as matrices, both in grayscale and RGB formats.
+
+2. **What is OpenCV:**
+   - OpenCV is an open-source Computer Vision library.
+   - Originally created by Intel, it was later supported by Willow Garage and is currently maintained by Itseez.
+
+3. **Using OpenCV for Image Processing:**
+   - OpenCV provides powerful tools for image processing and computer vision tasks.
+   - It's widely used for tasks like image manipulation, object detection, and more.
+
+4. **Numpy Integration:**
+   - Numpy is a highly optimized library for numerical operations.
+   - Digital images are essentially 2D arrays of pixels, making Numpy a suitable choice.
+   - OpenCV seamlessly integrates with Numpy, allowing for efficient and convenient array manipulation.
+
+5. **Reading and Displaying an Image:**
+   - Import the OpenCV library:
+   
+   ```python
+   import cv2
+   img=cv2.imread('img_path', -1)#-1-alpha_channels,0-grayscale,1-colour,assigning img as img_path 
+   cv2.imshow('image', img)#Display the image in a window
+   k = cv2.waitKey(0)#to hold frame for given miliseconds , 0-indefinitely
+   if k == 27:
+    cv2.destroyAllWindows()#Check if the 'Esc' key (ASCII code 27) was pressed
+   elif k == ord('s'): #check if s key is pressed
+    cv2.destroyAllWindows()
+    cv2.imwrite('imgcopy_path', img)
+6. **Capturing and saving live Videos through device camera or through pre intalled videos:**
+    ```python
+    import cv2
+
+    # Open a video capture object using the default camera (camera index 0).
+    cap = cv2.VideoCapture(0)  # Can also open a video file by providing the file path.
+
+    # Define the codec and create a VideoWriter object to save the video.
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')  # Specifies the codec (compression format).
+     out = cv2.VideoWriter('output.avi', fourcc, 20.0, (630, 480))  # Output file, codec, frames per second, and frame size.
+
+    # Loop to capture frames from the camera.
+    while cap.isOpened():
+    # Read a frame from the camera.
+    ret, frame = cap.read()
+
+    # Check if the frame was successfully read.
+    if ret == True:
+        # Get and print the frame width and height.
+        print(cap.get(cv2.CAP_PROP_FRAME_WIDTH))  # Frame width.
+        print(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))  # Frame height.
+
+        # Write the frame to the output video file.
+        out.write(frame)
+
+        # Convert the frame to grayscale.
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+        # Display the grayscale frame in a window named 'frame'.
+        cv2.imshow('frame', gray)
+
+        # Check if the 'q' key was pressed to exit the loop.
+         if cv2.waitKey(1) == ord('q'):
+            break
+    else:
+        break
+
+     # Release the video capture object and destroy all OpenCV windows.
+    cap.release()
+    cv2.destroyAllWindows()
+
+7. **Drawing figures on the image**
+   ```python
+   img = cv2.line(img,(0,0),(255,255),(150,0,255),20)#line
+   img = cv2.arrowedLine(img,(0,255),(255,0),(150,0,255),20)#ray
+   img = cv2.rectangle(img,(120,123),(219,210),(150,0,255),-1)#rectangle: last arg -1 for filled or thickness specifier
+   img = cv2.circle(img,(255,255),200,(150,0,255),20)#circle:last arg -1 for filled or thickness specifier
+   font = cv2.FONT_HERSHEY_SIMPLEX #font variable
+   img = cv2.putText(img,'opencv',(10,500),font,5,(150,0,255),5,cv2.LINE_AA)#adding text
+   cv2.imshow('image', img)
+8. **Reading Image with Numpy:**
+   ```python
+   import numpy as np
+
+   img = np.zeros([512,512,3],np.uint8)#(size,type(black in this case))
+9. **Setting Width and Hieght** .  
+    Numbers can be used to set and get the characteristics of the frame such as width and height
+    ```python
+    cap.set(3,1208)# Frame width. 
+    cap.set(4,720)# Frame height
+    print(cap.get(3))  # Frame width.
+    print(cap.get(4))  # Frame height.
+
+10. **Writing Text On live Video**
+    ```python
+    import cv2
+    import datetime
+
+    cap = cv2.VideoCapture(0)
+    cap.set(3,1208)# Frame width.
+    cap.set(4,720)# Frame height
+
+    while cap.isOpened():
+      ret,frame = cap.read()
+       if ret==True:
+         font = cv2.FONT_HERSHEY_COMPLEX
+         text='Width: '+str(cap.get(3))+' Height: '+str(cap.get(4))#text to be printed
+         datet=str(datetime.datetime.now())#adding date and time to video
+         frame=cv2.putText(frame,datet, (10, 50), font, 2, (150, 0, 255), 10, cv2.LINE_AA)
+         cv2.imshow('frame',frame)
+        else:
+         break
+        if cv2.waitKey(1)==ord('q'):
+         break
+
+    cap.release()
+    cv2.destroyAllWindows()
+
+11.**Mouse Event:**   
+   ```python  
+        import cv2
+         i .  mg = cv2.imread('/Users/guest-user/PycharmProjects/pythonProject2/lena.jpg', -1)
+   
+       def click_event(event,x,y,flags,param):
+         if event == cv2.EVENT_LBUTTONDOWN : #printing coord of clicked point
+        print(x," ",y)
+        strxy= str(x)+' '+str(y)
+        font = cv2.FONT_HERSHEY_COMPLEX
+        cv2.putText(img,strxy,(x,y),font,.5,(255,2,0),2)
+        cv2.imshow('image',img)
+      if event == cv2.EVENT_RBUTTONUP: #find BGR channels on any point of screen and display on screen
+        blue = img[y,x,0]
+        green = img[y,x,1]
+        red = img[y,x,2]
+        strbgr = str(blue) + ' ' + str(green)+' '+str(red)
+        font1 = cv2.FONT_HERSHEY_COMPLEX
+        cv2.putText(img, strbgr, (x, y), font1, .5, (255, 2, 255), 2)
+        cv2.imshow('image', img)
+
+
+    cv2.imshow('image', img) #name should be the same as that in the function
+    cv2.setMouseCallback('image',click_event)#used to call the event
+    k  = cv2.waitKey(0)
+
+    if k == 27:
+      cv2.destroyAllWindows()
+
+    #other events
+    points=[]
+    def click_event(event,x,y,flags,param):
+    if event == cv2.EVENT_LBUTTONDOWN : #drawing line between 2 points
+        cv2.circle(img,(x,y),3,(267,243,276),-1)
+        points.append((x,y))
+        if len(points)>=2:
+            cv2.line(img,points[-1],points[-2],(255,0,0),5)
+        cv2.imshow('image',img)
+
+    def click_event(event,x,y,flags,param):
+    
+       if event==cv2.EVENT_LBUTTONDOWN:#opening coloured image with chosen   point
+        blue = img[y, x, 0]
+        green = img[y, x, 1]
+        red = img[y, x, 2]
+        cv2.circle(img, (x, y), 3, (267, 243, 276), -1)
+        mycol=np.zeros((512,512,3),np.uint8)
+
+        mycol[:]=[blue,green,red]
+        cv2.imshow('color',mycol)
+        
+```
+12. **Certain Functions:**
+```python
+    print(img.shape)#total number of rows and columns and channels
+    print(img.size)#Total Number of pixels
+    print(img.dtype)#returns image datatype 
+    b,g,r=cv2.split(img)#splits into RGB
+    img=cv2.merge(img)#merges split img
+    ball=img[x:y,x1:y1]#assigns rectangle with top left and bottom right coords to ball
+    img[x2:y2,x3:y3]=ball #assigns ball to the location specified by img
+    img=cv2.resize(img,(x,y))#used to resize
+    img3 = cv2.add(img,img2)#combines two images
+    img3 = cv2.addWeighted(img,%,img2,%)#combines two images depending on values of weight(%) provided
+```
+13. **Bitwise Ops:**
+    Used for performing operations on Masks
+    Examples are:
+```python
+   #black is 0 white is 1
+   bitAnd = cv2.bitwise_and(img1,img2)
+   bitor = cv2.bitwise_or(img1,img2)
+   bitXor= cv2.bitwise_xor(img1,img2)
+   bitnot= cv2.bitwise_not(img)
+   #cv2.imshow('name',bit---) used to display these
+```
+# Thresholding in Image Processing
+
+Thresholding is a common segmentation technique used for separating an object from its background in image processing. This technique works by comparing each pixel of an image with a predefined threshold value and then dividing the pixels into two groups: one group with values higher than the threshold value and the other with values lower than the threshold value.
+
+## Code Example using OpenCV
+
+Below is a Python code example using the OpenCV library to perform thresholding on an image:
+
+```python
+import cv2
+import numpy as np
+
+# Load an image
+image = cv2.imread('your_image.jpg', cv2.IMREAD_GRAYSCALE)
+
+# Define a threshold value (you can adjust this value)
+threshold_value = 128
+
+# Apply binary thresholding
+ret, thresholded_image = cv2.threshold(image, threshold_value, 255, cv2.THRESH_BINARY)
+
+# Show the original and thresholded images
+cv2.imshow('Original Image', image)
+cv2.imshow('Thresholded Image', thresholded_image)
+
+# Wait for a key press and then close the windows
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+ 
+# Morphological Transformations in Image Processing
+
+Morphological transformations are simple operations based on shapes that are commonly used in image processing. These operations are primarily performed on binary images and require two main components: the original image and a kernel. Various morphological operations, including Erosion, Dilation, Opening, Closing, Top-Hat, and Gradient, can be applied to manipulate binary images.
+
+## Erosion
+
+- Erosion is a morphological operation that erodes away the boundaries of the foreground object.
+- It can be thought of as similar to soil erosion, where the object's boundary is gradually reduced.
+- It is essential to have the foreground in white when using erosion.
+
+## Dilation
+
+- Dilation is a morphological operation that involves expanding the outer surface (foreground) of the image.
+- In binary images, which contain only two pixel values (0 and 255), dilation primarily expands the foreground.
+- It is recommended to have the foreground as white before applying dilation.
+
+## Opening
+
+- Opening is another morphological operation that combines erosion followed by dilation.
+- It is useful for removing noise from binary images.
+
+## Closing
+
+- Closing is the reverse of opening and involves dilation followed by erosion.
+- It is useful for closing small holes inside the foreground objects or eliminating small black points on the object.
+
+## Top-Hat
+
+- Top-Hat is the difference between the input image and the opening of the image.
+- It helps in highlighting structures and details within the image.
+
+## Gradient
+
+- Gradient is the difference between dilation and erosion of an image.
+- It highlights the boundaries of objects in the image.
+
+### Example Code using OpenCV
+
+```python
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+
+# Read the image in grayscale
+img = cv2.imread('smarties.png', cv2.IMREAD_GRAYSCALE)
+
+# Apply thresholding to create a binary mask
+_, mask = cv2.threshold(img, 220, 255, cv2.THRESH_BINARY_INV)
+
+# Define a kernel for morphological operations
+kernel = np.ones((5, 5), np.uint8)
+
+# Perform morphological operations
+dilation = cv2.dilate(mask, kernel, iterations=2)
+erosion = cv2.erode(mask, kernel, iterations=1)
+opening = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+closing = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+mg = cv2.morphologyEx(mask, cv2.MORPH_GRADIENT, kernel)
+th = cv2.morphologyEx(mask, cv2.MORPH_TOPHAT, kernel)
+
+# Display the results
+titles = ['image', 'mask', 'dilation', 'erosion', 'opening', 'closing', 'mg', 'th']
+images = [img, mask, dilation, erosion, opening, closing, mg, th]
+
+for i in range(8):
+    plt.subplot(2, 4, i+1), plt.imshow(images[i], 'gray')
+    plt.title(titles[i])
+    plt.xticks([]), plt.yticks([])
+
+plt.show()
+```
+
+# Smoothing and Blurring Images
+
+Smoothing or blurring images is a common image processing technique used to reduce noise and create a more visually appealing appearance. Various filters and methods are employed for this purpose:
+
+- **Homogeneous Filter**: This filter computes the mean of its kernel neighbors for each output pixel.
+
+- **Low Pass Filter (LPF)**: LPF is used to remove noise and blur images. It includes:
+  - **Gaussian Filter**: Utilizes a different-weighted kernel in both the x and y directions.
+  - **Median Filter**: Replaces each pixel's value with the median of its neighboring pixels, effective for salt and pepper noise.
+
+Below is an example code in Python using OpenCV to apply these filters to an image:
+
+```python
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+
+# Read the image and convert it to RGB
+img = cv2.imread('lena.jpg')
+img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+# Define a 5x5 kernel
+kernel = np.ones((5, 5), np.float32)/25
+
+# Apply different filters to the image
+dst = cv2.filter2D(img, -1, kernel)
+blur = cv2.blur(img, (5, 5))
+gblur = cv2.GaussianBlur(img, (5, 5), 0)
+median = cv2.medianBlur(img, 5)
+bilateralFilter = cv2.bilateralFilter(img, 9, 75, 75)
+
+# Display the results
+titles = ['image', '2D Convolution', 'blur', 'GaussianBlur', 'median', 'bilateralFilter']
+images = [img, dst, blur, gblur, median, bilateralFilter]
+
+for i in range(6):
+    plt.subplot(2, 3, i+1), plt.imshow(images[i], 'gray')
+    plt.title(titles[i])
+    plt.xticks([]), plt.yticks([])
+
+plt.show()
+```
+
+# Image Gradient and Edge Detection
+
+Image gradient is a fundamental concept in image processing, representing the directional change in intensity or color within an image. Edge detection, a key application, aims to identify abrupt changes in intensity, which often correspond to object boundaries or significant features in an image.
+
+## Laplacian Operator
+
+The Laplacian Operator in OpenCV is a derivative operator used for edge detection. It computes the second-order derivatives, measuring the rate of change of first-order derivatives. This helps classify changes in pixel values as edges and continuous progressions.
+
+## Sobel Edge Detection
+
+Sobel Edge Detection is one of the most widely used algorithms for edge detection. The Sobel Operator is employed to detect edges marked by sudden changes in pixel intensity. It consists of two variants:
+
+- **SobelX:** Detects changes in intensity in the horizontal (x) direction.
+- **SobelY:** Detects changes in intensity in the vertical (y) direction.
+
+Below is an example code in Python using OpenCV to perform Laplacian and Sobel edge detection on a grayscale image:
+
+```python
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+
+# Read the image in grayscale
+img = cv2.imread("sudoku.png", cv2.IMREAD_GRAYSCALE)
+
+# Apply Laplacian operator
+lap = cv2.Laplacian(img, cv2.CV_64F, ksize=3)
+lap = np.uint8(np.absolute(lap))
+
+# Apply Sobel operators in both x and y directions
+sobelX = cv2.Sobel(img, cv2.CV_64F, 1, 0)
+sobelY = cv2.Sobel(img, cv2.CV_64F, 0, 1)
+sobelX = np.uint8(np.absolute(sobelX))
+sobelY = np.uint8(np.absolute(sobelY))
+
+# Combine SobelX and SobelY results
+sobelCombined = cv2.bitwise_or(sobelX, sobelY)
+
+# Display the results
+titles = ['image', 'Laplacian', 'sobelX', 'sobelY', 'sobelCombined']
+images = [img, lap, sobelX, sobelY, sobelCombined]
+
+for i in range(5):
+    plt.subplot(2, 3, i+1), plt.imshow(images[i], 'gray')
+    plt.title(titles[i])
+    plt.xticks([]), plt.yticks([])
+
+plt.show()
+```
+
+# Canny Edge Detection
+
+The Canny edge detector is a popular edge detection operator known for its ability to detect a wide range of edges in images. It employs a multi-stage algorithm consisting of five key steps:
+
+1. **Noise Reduction**: Reduce noise in the image to prevent it from being detected as edges.
+2. **Gradient Calculation**: Calculate the intensity gradients of the image using derivative filters.
+3. **Non-maximum Suppression**: Suppress non-maximum pixels to keep only the local maxima as potential edge points.
+4. **Double Thresholding**: Apply double thresholding to classify pixels as strong, weak, or non-edges.
+5. **Edge Tracking by Hysteresis**: Track and connect edges by analyzing connectivity between strong and weak edge pixels.
+
+Below is an example code in Python using OpenCV to perform Canny edge detection on an image:
+
+```python
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+
+# Read the image and convert it to RGB
+img = cv2.imread("lena.jpg")
+img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+# Apply Canny edge detection
+canny = cv2.Canny(img, 100, 200)
+
+# Display the original image and the result of Canny edge detection
+titles = ['image', 'Canny Edge Detection']
+images = [img, canny]
+
+for i in range(2):
+    plt.subplot(1, 2, i+1), plt.imshow(images[i], 'gray')
+    plt.title(titles[i])
+    plt.xticks([]), plt.yticks([])
+
+plt.show()
+```
+# Contours in Image Processing
+
+Contours are a fundamental concept in image processing and computer vision. They can be described as curves that connect all continuous points along the boundary that have the same color or intensity. Contours are widely used for various tasks, including shape analysis, object detection, and recognition.
+
+## Code Example
+
+Here's an example of how to find and draw contours in an image using Python and OpenCV:
+
+```python
+import numpy as np
+import cv2
+
+# Read the image
+img = cv2.imread('baseball.png')
+
+# Convert the image to grayscale
+imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# Apply a threshold to create a binary image
+ret, thresh = cv2.threshold(imgray, 127, 255, 0)
+
+# Find contours in the binary image
+contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+
+# Print the number of contours found
+print("Number of contours = " + str(len(contours)))
+
+# Draw contours on the original color image
+cv2.drawContours(img, contours, -1, (0, 255, 0), 3)
+
+# Draw contours on the grayscale image
+cv2.drawContours(imgray, contours, -1, (0, 255, 0), 3)
+
+# Display the images with contours
+cv2.imshow('Image', img)
+cv2.imshow('Grayscale Image with Contours', imgray)
+# Wait for a key press and close the windows
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+
+
+
+
