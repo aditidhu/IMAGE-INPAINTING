@@ -80,13 +80,14 @@ This component of the project focuses on image inpainting using the Fast Marchin
 ### Usage
 To use the FMM inpainting code:
 1. Navigate to the 'FMM_IMPLEMENTATION' file stored in SRC-NOTEBOOKS .
-2. Copy the code give the image to be inpainted as the input and create a binary mask with damaged pixels as black and the rest as white and apply the algorithm 
+2. Run the notebook, give the image to be inpainted as the input and create a binary mask with damaged pixels as black and the rest as white and apply the algorithm 
 
 
 ### Dependencies
 The FMM inpainting component relies on the following:
 - Python
-- Libraries specified in 'requirements.txt' within the 'fmm_inpainting' directory.
+- Libraries used are Numpy,cv2,Matplotlib and Math
+
 
 ## Partial Convolutions for Image Inpainting
 
@@ -132,7 +133,7 @@ Further Display the output image to see the results
 
 The partial convolutions for image inpainting component rely on the following:
 - Python
-- Libraries specified in 'requirements.txt' within the 'partial_convolution' directory.
+- Libraries used are Numpy,cv2,Matplotlib,Math,Tensorflow
 
 ## Future Work
 
@@ -147,6 +148,8 @@ We would like to express our gratitude for the tools and platforms that contribu
 - **Keras**: We leveraged the Keras deep learning framework for implementing partial convolutions in image inpainting.
 - **Google Colab**: Google Colab provided a collaborative environment for the development of the FMM and object detection components. Its cloud-based Jupyter notebooks facilitated data processing and model training.
 - **Kaggle**: Kaggle served as our platform of choice for collaborative work on the partial convolution part of the project. Its collaborative coding environment and version control features streamlined the development process.
+- **Research Paper**: https://www.researchgate.net/publication/238183352_An_Image_Inpainting_Technique_Based_on_the_Fast_Marching_Method
+- **Research Paper**: https://doi.org/10.48550/arXiv.1804.07723
 
 ## Contact
 
