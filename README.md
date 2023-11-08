@@ -70,7 +70,7 @@ The aim of this Image Inpainting project is to provide a robust solution for dig
 
 By leveraging advanced machine learning algorithms and deep learning techniques, our project aims not only to enhance the visual aesthetics of images but also to contribute to the broader field of computer vision and image processing by addressing challenges related to context-aware scene understanding and reconstruction.
 
-![Example of the input image the mask and the corresponding output](IMAGE-INPAINTING/RESULTS/PARTIAL_CONVOLUTION/PCONVRESULT.png)
+
 
 ## Image Inpainting using FMM
 
