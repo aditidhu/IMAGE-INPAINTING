@@ -76,8 +76,10 @@ The aim of this Image Inpainting project is to provide a robust solution for dig
 By leveraging advanced machine learning algorithms and deep learning techniques, our project aims not only to enhance the visual aesthetics of images but also to contribute to the broader field of computer vision and image processing by addressing challenges related to context-aware scene understanding and reconstruction.
 
 
-## Image Inpainting using FMM
-![FMM input and output for 1 pixel thick damaged portions](/RESULTS/FMM/fmm_ouput1.png)
+## Image Inpainting using FMM  
+
+![FMM input and output for 1 pixel thick damaged portions](/RESULTS/FMM/fmm_ouput1.png)  
+
 ![FMM input and output for 2 pixel thick damaged portions](/RESULTS/FMM/fmm_ouput2.png)
 
 
