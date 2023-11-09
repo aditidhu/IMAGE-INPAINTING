@@ -34,28 +34,33 @@ This comprehensive project combines various techniques for image inpainting . It
  ┃ ┣ 📂IMAGES  
  ┃ ┃ ┣ 📜FMM_INPUT_IMAGE.jpg  
  ┃ ┃ ┗ 📜PCONV_INPUT_IMAGE.jpg  
- ┃ ┗ 📂MASKS  
- ┃   ┣ 📜FMM_INPUT_MASK.png  
- ┃   ┗ 📜PCONV_INPUT_MASK.png  
- ┣ 📜PROJECT_REPORT.pdf  
+ ┃ ┣ 📂MASKS  
+ ┃ ┃ ┣ 📜FMM_INPUT_MASK.png  
+ ┃ ┃ ┗ 📜PCONV_INPUT_MASK.png  
+ ┃ ┣ 📜PROJECT_REPORT.pdf  
+ ┃ ┗ 📂MINI-PROJECT  
+ ┃   ┣ 📜LICENSE_PLATE_DETECTION.ipynb  
+ ┃   ┣ 📜Readme.md  
  ┣ 📂RESULTS  
  ┃ ┣ 📂FMM  
- ┃ ┃ ┣ 📜Screencast from 08-11-23 04...mp4  
+ ┃ ┃ ┣ 📜Screencast from 08-11-23 04...webm  
  ┃ ┃ ┗ 📜output.png  
  ┃ ┗ 📂PARTIAL_CONVOLUTION  
  ┃   ┣ 📜PCONVRESULT.png  
- ┃   ┗ 📜Screencast from 08-11-23 04...mp4  
- ┣ 📂SRC  
+ ┃   ┗ 📜Screencast from 08-11-23 04...webm  
+ ┣ 📂SRC    
  ┃ ┣ 📂MODEL  
  ┃ ┃ ┣ 📜INPAINTING_MODEL.py  
  ┃ ┃ ┣ 📜PCON2D.py  
  ┃ ┃ ┣ 📜model_v2 (1).png  
  ┃ ┃ ┗ 📜trainedmodel (1).h5  
+ ┃ ┣ 📜PYTHONSCRIPT.py  
+ ┃ ┣ 📜MAIN.py  
  ┃ ┗ 📂NOTEBOOKS  
  ┃   ┣ 📜FMM_IMPLEMENTATION.ipynb  
  ┃   ┣ 📜LICENSE_PLATE_DETECTION.ipynb  
  ┃   ┣ 📜pconv-implementation (3).ipynb  
- ┃   ┗ 📜MAIN.py  
+ ┣ 📜README.md  
 
 ## Image Inpainting:
 
@@ -71,16 +76,18 @@ The aim of this Image Inpainting project is to provide a robust solution for dig
 By leveraging advanced machine learning algorithms and deep learning techniques, our project aims not only to enhance the visual aesthetics of images but also to contribute to the broader field of computer vision and image processing by addressing challenges related to context-aware scene understanding and reconstruction.
 
 
-
 ## Image Inpainting using FMM
+
+![Inpainting Results Using FMM](/RESULTS/FMM/output.png)
 
 ### Description
 This component of the project focuses on image inpainting using the Fast Marching Method (FMM). FMM is a powerful algorithm for filling in missing or damaged regions in images while preserving their structural and textural properties. The code for this implementation can be found in the 'fmm_inpainting' directory.
 
 ### Usage
 To use the FMM inpainting code:
-1. Navigate to the 'FMM_IMPLEMENTATION' file stored in SRC-NOTEBOOKS .
-2. Run the notebook, give the image to be inpainted as the input and create a binary mask with damaged pixels as black and the rest as white and apply the algorithm 
+1. Download and run PYTHONSCRIPT.py located in SRC
+2. Give the paths of the image and binary mask as the inputs 
+3. Choose option 1
 
 
 ### Dependencies
@@ -90,6 +97,7 @@ The FMM inpainting component relies on the following:
 
 
 ## Partial Convolutions for Image Inpainting
+![Inpainting Results Using Partial Convolutions](/RESULTS/PARTIAL_CONVOLUTION/PCONVRESULT.png)
 
 ### Description
 This component explores the use of partial convolutions for image inpainting using Keras. Partial convolutions are effective in preserving details during the inpainting process. The code for this implementation can be found in the 'partial_convolution' directory.
@@ -97,36 +105,9 @@ This component explores the use of partial convolutions for image inpainting usi
 ## Usage
 
 To perform image inpainting using partial convolutions, follow these steps:
-
-1. Create a Python file and load the provided `trained_model (1).h5` model stored in SRC-MODEL.
-
-2. Add the definitions of `PConv2D` and `dice_coef` as shown below:
-
-```python
-   from tensorflow.keras.utils import get_custom_objects
-
-   # Add batch dimension to input
-   input_image = np.expand_dims(input_image, axis=0)
-   input_mask = np.expand_dims(input_mask, axis=0)
-
-   # Update custom objects
-   get_custom_objects().update({'PConv2D': PConv2D, 'dice_coef': dice_coef})
-
-   # Load your model
-   model = load_model('/content/trainedmodel (1).h5')
-
-   # Run the model to predict the inpainted image
-   predicted_image = model.predict([input_image, input_mask])
-
-   # Post-process the output
-   output_image = predicted_image.squeeze()  # Remove batch dimension
-   output_image = (output_image * 255).astype(np.uint8)
-```
-In this code snippet:
-
-input_image and input_mask represent the image to be inpainted and its mask.
-output_image contains the resulting inpainted image after processing.
-Further Display the output image to see the results
+1. Download and run PYTHONSCRIPT.py located in SRC
+2. Give the paths of the image and binary mask as the inputs 
+3. Choose option 2
 
 
 ### Dependencies
