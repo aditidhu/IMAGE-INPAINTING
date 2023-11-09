@@ -76,8 +76,9 @@ The aim of this Image Inpainting project is to provide a robust solution for dig
 By leveraging advanced machine learning algorithms and deep learning techniques, our project aims not only to enhance the visual aesthetics of images but also to contribute to the broader field of computer vision and image processing by addressing challenges related to context-aware scene understanding and reconstruction.
 
 
-
 ## Image Inpainting using FMM
+
+![Inpainting Results Using FMM](/RESULTS/FMM/output.png)
 
 ### Description
 This component of the project focuses on image inpainting using the Fast Marching Method (FMM). FMM is a powerful algorithm for filling in missing or damaged regions in images while preserving their structural and textural properties. The code for this implementation can be found in the 'fmm_inpainting' directory.
@@ -96,6 +97,7 @@ The FMM inpainting component relies on the following:
 
 
 ## Partial Convolutions for Image Inpainting
+![Inpainting Results Using Partial Convolutions](/RESULTS/PARTIAL_CONVOLUTION/PCONVRESULT.png)
 
 ### Description
 This component explores the use of partial convolutions for image inpainting using Keras. Partial convolutions are effective in preserving details during the inpainting process. The code for this implementation can be found in the 'partial_convolution' directory.
