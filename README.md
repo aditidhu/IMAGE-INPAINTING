@@ -77,13 +77,13 @@ By leveraging advanced machine learning algorithms and deep learning techniques,
 
 
 ## Image Inpainting using FMM
-![Input Image](/ASSETS/IMAGES/FMM_INPUT_IMAGE.jpg)
-![Inpainting Results Using FMM](/RESULTS/FMM/output.png)
+![FMM input and output for 1 pixel thick damaged portions](/RESULTS/FMM/fmm_ouput1.png)
+![FMM input and output for 2 pixel thick damaged portions](/RESULTS/FMM/fmm_ouput2.png)
 
 
 
 ### Description
-This component of the project focuses on image inpainting using the Fast Marching Method (FMM). FMM is a powerful algorithm for filling in missing or damaged regions in images while preserving their structural and textural properties. The code for this implementation can be found in the 'fmm_inpainting' directory.
+This component of the project focuses on image inpainting using the Fast Marching Method (FMM). FMM is a powerful algorithm for filling in missing or damaged regions in images while preserving their structural and textural properties. But due to the absence of deep learning it cannot inpaint accurately for images having larger damaged portionsas seen in the given images ,thus leading to the need for incorporating deep learning in image inpainting. The code for this implementation can be found in the 'fmm_inpainting' directory.
 
 ### Usage
 To use the FMM inpainting code:
