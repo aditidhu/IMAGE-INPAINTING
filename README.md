@@ -43,11 +43,11 @@ This comprehensive project combines various techniques for image inpainting . It
  ┃   ┣ 📜Readme.md  
  ┣ 📂RESULTS  
  ┃ ┣ 📂FMM  
- ┃ ┃ ┣ 📜Screencast from 08-11-23 04...mp4  
+ ┃ ┃ ┣ 📜Screencast from 08-11-23 04...webm  
  ┃ ┃ ┗ 📜output.png  
  ┃ ┗ 📂PARTIAL_CONVOLUTION  
  ┃   ┣ 📜PCONVRESULT.png  
- ┃   ┗ 📜Screencast from 08-11-23 04...mp4  
+ ┃   ┗ 📜Screencast from 08-11-23 04...webm
  ┣ 📂SRC  
  ┃ ┣ 📂MODEL  
  ┃ ┃ ┣ 📜INPAINTING_MODEL.py  
