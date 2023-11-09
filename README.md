@@ -77,6 +77,8 @@ By leveraging advanced machine learning algorithms and deep learning techniques,
 
 
 ## Image Inpainting using FMM
+![Input Image](/ASSETS/IMAGES/FMM_INPUT_IMAGE.jpg)
+![Inpainting Results Using FMM](/RESULTS/FMM/output.png)
 
 
 
