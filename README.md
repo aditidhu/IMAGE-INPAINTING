@@ -78,9 +78,9 @@ By leveraging advanced machine learning algorithms and deep learning techniques,
 
 ## Image Inpainting using FMM  
 
-![FMM input and output for 1 pixel thick damaged portions](/RESULTS/FMM/fmm_ouput1.png)  
+![FMM input and output for 1 pixel thick damaged portions](/RESULTS/FMM/fmm_output1.png)  
 
-![FMM input and output for 2 pixel thick damaged portions](/RESULTS/FMM/fmm_ouput2.png)
+![FMM input and output for 2 pixel thick damaged portions](/RESULTS/FMM/fmm_output2.png)
 
 
 
